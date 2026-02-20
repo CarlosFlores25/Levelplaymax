@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - D'Level Play Max</title>
+    <link rel="stylesheet" href="../index.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Rajdhani:wght@500;700&display=swap"
+        rel="stylesheet">
+    <!-- Favicon (Logo en la pestaña) -->
+    <link rel="icon" type="image/png" href="../img/logo.png">
+
+    <!-- Opcional: Para que se vea bien si guardan la web en iPhone/iPad -->
+    <link rel="apple-touch-icon" href="../img/logo.png">
+    <style>
+        /* Estilos del Checkout Embebidos para asegurar carga */
+        body {
+            padding-top: 80px;
+            background: radial-gradient(circle at top center, #1a0b2e, #000);
+        }
+
+        .catalog-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 0;
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .checkout-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            min-height: 80vh;
+        }
+
+        /* Tarjetas de Paso */
+        .step-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 2rem;
+            display: none;
+            animation: slideIn 0.4s ease forwards;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .step-card.active {
+            display: block;
+        }
+
+        .step-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: var(--secondary);
+            color: black;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            line-height: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-family: var(--font-display);
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-family: var(--font-display);
+            color: white;
+        }
+
+        /* Resumen del Producto */
+        .product-summary {
+            background: rgba(0, 210, 255, 0.05);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .prod-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .prod-price {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* Opciones de Pago */
+        .payment-option {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.2rem;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        .payment-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: white;
+            transform: translateX(5px);
+        }
+
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        /* Detalles Pago */
+        .payment-details {
+            background: #0a0a0a;
+            border: 1px dashed #333;
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .bs-amount {
+            font-size: 2.5rem;
+            font-family: var(--font-display);
+            color: #00ff88;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+
+        .copy-data {
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.8;
+            user-select: all;
+        }
+
+        /* Subida de Archivo */
+        .file-upload-wrapper {
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            position: relative;
+            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .file-upload-wrapper:hover {
+            border-color: var(--secondary);
+            background: rgba(0, 210, 255, 0.05);
+        }
+
+        input[type="file"] {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Botón Grande */
+        .cta-button-main {
+            width: 100%;
+            padding: 1.2rem;
+            border-radius: 50px;
+            border: none;
+            background: var(--secondary);
+            color: #000;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(0, 210, 255, 0.3);
+        }
+
+        .cta-button-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.5);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="catalog-header">
+        <div class="container header-flex">
+            <a href="../catalogos/catalogo.html" class="back-link">✕ Cancelar</a>
+            <div class="logo-text">Checkout</div>
+        </div>
+    </header>
+
+    <main class="checkout-container">
+
+        <!-- PASO 1 -->
+        <div id="step-1" class="step-card active">
+            <div class="step-header">
+                <span class="step-number">1</span>
+                <h2 class="step-title">Tus Datos</h2>
+            </div>
+
+            <div class="product-summary">
+                <div>
+                    <span style="color:#aaa; font-size:0.9rem">Estás comprando:</span>
+                    <div class="prod-name" id="summary-prod-name">Cargando...</div>
+                </div>
+                <div class="prod-price" id="summary-price">$0.00</div>
+            </div>
+
+            <!-- Dentro de #step-1 en checkout.html -->
+
+            <div class="glass-card" style="padding:1rem; margin-bottom:1.5rem; background:rgba(255,255,255,0.03)">
+                <!-- ... Resumen de producto existente ... -->
+                <div class="total-row summary-row" style="margin-top:0.5rem; padding-top:0.5rem">
+                    <span>Total a Pagar:</span>
+                    <span id="summary-price" style="color:var(--secondary)">$0.00</span>
+                </div>
+
+                <!-- NUEVO: SECCIÓN CUPÓN -->
+                <div style="margin-top:15px; display:flex; gap:10px;">
+                    <input type="text" id="coupon-code" placeholder="Código de Cupón"
+                        style="margin:0; text-transform:uppercase; font-size:0.9rem;">
+                    <button type="button" onclick="applyCoupon()" class="cta-button-main"
+                        style="width:auto; padding:0 15px; margin:0; font-size:0.9rem;">Aplicar</button>
+                </div>
+                <p id="coupon-msg" style="font-size:0.8rem; margin-top:5px;"></p>
+            </div>
+
+            <form id="form-datos">
+                <div style="margin-bottom:15px">
+                    <label style="color:#aaa; font-size:0.9rem; margin-left:10px">Nombre Completo</label>
+                    <input type="text" id="cx-nombre" placeholder="Ej: Juan Pérez" required>
+                </div>
+                <div style="margin-bottom:15px">
+                    <label style="color:#aaa; font-size:0.9rem; margin-left:10px">WhatsApp (Para enviarte la
+                        cuenta)</label>
+                    <input type="tel" id="cx-telefono" placeholder="Ej: 0412..." required>
+                </div>
+                <div style="margin-bottom:15px">
+                    <label style="color:#aaa; font-size:0.9rem; margin-left:10px">Correo Electrónico</label>
+                    <input type="email" id="cx-email" placeholder="Ej: juan@gmail.com" required>
+                </div>
+
+                <button type="submit" class="cta-button-main">Siguiente Paso →</button>
+            </form>
+        </div>
+
+        <!-- PASO 2 -->
+        <div id="step-2" class="step-card">
+            <div class="step-header">
+                <span class="step-number">2</span>
+                <h2 class="step-title">Método de Pago</h2>
+            </div>
+
+            <p style="text-align:center; color:#aaa; margin-bottom:1.5rem">Elige cómo deseas pagar:</p>
+
+            <div class="payment-option" onclick="selectPayment('Pago Movil')">
+                <img src="../img/pagomovil.png" class="payment-icon"
+                    onerror="this.src='https://img.icons8.com/fluency/48/iphone-x.png'">
+                <div style="flex:1">
+                    <strong style="color:white">Pago Móvil</strong><br>
+                    <small style="color:#00ff88">Tasa: <span id="lbl-tasa">...</span> Bs/$</small>
+                </div>
+                <span style="color:var(--secondary)">➜</span>
+            </div>
+
+            <div class="payment-option" onclick="selectPayment('Binance')">
+                <img src="../img/binance.png" class="payment-icon"
+                    onerror="this.src='https://img.icons8.com/color/48/binance.png'">
+                <div style="flex:1"><strong style="color:white">Binance Pay</strong></div>
+                <span style="color:var(--secondary)">➜</span>
+            </div>
+
+            <div class="payment-option" onclick="selectPayment('Zinli')">
+                <img src="../img/zinli.png" class="payment-icon"
+                    onerror="this.src='https://pbs.twimg.com/profile_images/1427660028367749124/wXqD8dO5_400x400.jpg'">
+                <div style="flex:1"><strong style="color:white">Zinli</strong></div>
+                <span style="color:var(--secondary)">➜</span>
+            </div>
+
+            <button onclick="goToStep(1)"
+                style="background:none; border:none; color:#666; width:100%; margin-top:1rem; cursor:pointer">← Volver
+                atrás</button>
+        </div>
+
+        <!-- PASO 3 -->
+        <div id="step-3" class="step-card">
+            <div class="step-header">
+                <span class="step-number">3</span>
+                <h2 class="step-title">Realizar Pago</h2>
+            </div>
+
+            <div id="payment-display" class="payment-details"></div>
+
+            <form id="form-comprobante">
+                <p style="text-align:center; color:white; margin-bottom:10px">Sube la captura aquí:</p>
+
+                <div class="file-upload-wrapper">
+                    <span class="upload-icon">📸</span>
+                    <span id="file-label" style="color:#aaa">Toca para seleccionar foto</span>
+                    <input type="file" id="file-input" accept="image/*" required>
+                </div>
+
+                <button type="submit" class="cta-button-main">✅ Confirmar Pago</button>
+                <button type="button" onclick="goToStep(2)"
+                    style="background:none; border:none; color:#666; width:100%; margin-top:1rem; cursor:pointer">←
+                    Cambiar método</button>
+            </form>
+        </div>
+
+        <!-- PASO 4 -->
+        <div id="step-4" class="step-card" style="text-align:center; padding-top:3rem; padding-bottom:3rem">
+            <div
+                style="width:80px; height:80px; background:#00ff88; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px auto; box-shadow:0 0 30px rgba(0,255,136,0.3)">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5" />
+                </svg>
+            </div>
+            <h2 style="font-family:var(--font-display); font-size:2rem; margin-bottom:10px">¡Listo!</h2>
+            <p style="color:#aaa; margin-bottom:2rem">Tu comprobante fue enviado. <br>Te escribiremos al WhatsApp en
+                breve.</p>
+            <a href="catalogo.html" class="cta-button-main" style="text-decoration:none; display:inline-block">Volver al
+                Catálogo</a>
+        </div>
+
+    </main>
+
+    <script src="checkout.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+# Proteger archivos sensibles
+<FilesMatch "\.(log|env|sql|bak)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Proteger directorio de logs
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^logs/ - [F,L]
+    RewriteRule ^system\.log$ - [F,L]
+    RewriteRule ^error_log$ - [F,L]
+</IfModule>
+
+# Prevenir listado de directorios
+Options -Indexes
+
+# Headers de seguridad
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Deshabilitar ejecución de PHP en uploads
+<DirectoryMatch "^.*/uploads/">
+    php_flag engine off
+</DirectoryMatch>

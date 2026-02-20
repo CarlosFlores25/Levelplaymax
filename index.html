@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D'Level Play Max - Entretenimiento Sin Límites</title>
+    <link rel="stylesheet" href="index.css">
+    <!-- Fuentes e Iconos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Rajdhani:wght@500;700&display=swap"
+        rel="stylesheet">
+    <!-- Favicon (Logo en la pestaña) -->
+    <link rel="icon" type="image/png" href="img/logo.png">
+
+    <!-- Opcional: Para que se vea bien si guardan la web en iPhone/iPad -->
+    <link rel="apple-touch-icon" href="img/logo.png">
+</head>
+
+<body>
+
+    <!-- ======== BARRA DE NAVEGACIÓN ======== -->
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">D'Level <span class="highlight">Play Max</span></a>
+
+            <!-- Navegación Desktop -->
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="catalogos/catalogo.html">Catálogo</a></li>
+                    <li><a href="reseller/index.php"
+                            style="color:#00c6ff; border:1px solid #00c6ff; padding:5px 15px; border-radius:20px; transition:0.3s">Soy
+                            Distribuidor</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="mobile-menu-toggle" aria-label="Abrir menú">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ======== MENÚ MÓVIL (OVERLAY) ======== -->
+    <div class="mobile-menu-overlay">
+        <nav class="mobile-nav">
+            <ul class="mobile-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="catalogos/catalogo.html">Catálogo</a></li>
+                <a href="reseller/index.php" class="menu-btn"
+                    style="border-color:#00c6ff; background:rgba(0, 198, 255, 0.05);">
+                    <span class="icon" style="font-size:1.5rem">💼</span>
+                    <span style="color:#00c6ff; font-weight:bold;">Acceso Socios</span>
+                </a>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        <!-- ======== SECCIÓN PRINCIPAL (HERO) ======== -->
+        <section id="inicio" class="hero-section">
+            <div class="hero-bg-wrapper">
+                <div class="hero-blob blob-1"></div>
+                <div class="hero-blob blob-2"></div>
+                <div class="hero-grid"></div>
+            </div>
+
+            <div class="container hero-content">
+                <span class="badge animate-on-scroll">🚀 Servicio Premium</span>
+                <h1 class="hero-title animate-on-scroll">Tu Pase VIP al <br><span class="text-gradient">Streaming
+                        Ilimitado</span></h1>
+                <p class="hero-subtitle animate-on-scroll">Accede a Netflix, Disney+, Spotify y más con D'Level Play
+                    Max. Precios imbatibles, garantía total y activación al instante.</p>
+
+                <div class="hero-buttons animate-on-scroll">
+                    <a href="catalogos/catalogo.html" class="cta-button-main pulse-effect">Explorar Catálogo</a>
+                    <a href="#faq" class="cta-button-outline">Tengo dudas</a>
+                </div>
+
+                <div class="trust-bar animate-on-scroll">
+                    <p>Compatible con:</p>
+                    <div class="trust-icons">
+                        <img src="https://img.icons8.com/fluency/48/netflix-desktop-app.png" alt="Netflix">
+                        <img src="https://img.icons8.com/fluency/48/spotify.png" alt="Spotify">
+                        <img src="https://img.icons8.com/fluency/48/disney-plus.png" alt="Disney+">
+                        <img src="https://img.icons8.com/fluency/48/hbo.png" alt="HBO">
+                        <img src="https://img.icons8.com/fluency/48/amazon-prime-video.png" alt="Prime">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== SECCIÓN CÓMO FUNCIONA (GLASS CARDS) ======== -->
+        <section id="beneficios" class="how-it-works-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">La Experiencia <span class="highlight">D'Level</span></h2>
+                <p class="section-desc animate-on-scroll">Simple, rápido y seguro. Así funcionamos.</p>
+
+                <div class="steps-container">
+                    <!-- Card 1 -->
+                    <div class="glass-card animate-on-scroll">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <polygon points="10 8 16 12 10 16 10 8" />
+                            </svg>
+                        </div>
+                        <h3>Selecciona</h3>
+                        <p>Elige tu plataforma favorita entre nuestra amplia variedad de servicios premium.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="glass-card animate-on-scroll" style="transition-delay: 100ms;">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="5" width="20" height="14" rx="2" />
+                                <line x1="2" y1="10" x2="22" y2="10" />
+                            </svg>
+                        </div>
+                        <h3>Paga Seguro</h3>
+                        <p>Múltiples métodos de pago encriptados para tu total tranquilidad y comodidad.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="glass-card animate-on-scroll" style="transition-delay: 200ms;">
+                        <div class="icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
+                        </div>
+                        <h3>Disfruta YA</h3>
+                        <p>Recibe tus credenciales automáticamente y comienza a ver tu contenido favorito.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN PROMOCIÓN DISTRIBUIDORES -->
+        <section id="socios" class="reseller-promo-section">
+            <div class="container">
+                <div class="promo-card">
+                    <div class="promo-content">
+                        <span class="promo-badge">DINERO EXTRA 🚀</span>
+                        <h2 class="promo-title">Vende Streaming y Gana</h2>
+                        <p class="promo-text">
+                            Únete a nuestra red de distribuidores. Ofrecemos plataforma automatizada, entrega inmediata
+                            y los mejores precios del mercado.
+                        </p>
+                        <div class="promo-buttons">
+                            <a href="reseller/index.php" class="btn-reseller-login">Iniciar Sesión</a>
+                            <a href="https://wa.me/584123368325?text=Hola,%20quiero%20ser%20distribuidor"
+                                target="_blank" class="btn-reseller-info">Solicitar Cuenta</a>
+                        </div>
+                    </div>
+                    <!-- Icono o imagen decorativa -->
+                    <div class="promo-visual">
+                        <div class="visual-circle">💼</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== SECCIÓN DE AYUDA Y PROCESO (FAQ) ======== -->
+
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <div class="faq-grid">
+
+                    <!-- COLUMNA IZQUIERDA: El Proceso (Timeline) -->
+                    <div class="process-column animate-on-scroll">
+                        <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">
+                            ¿Cómo <span class="highlight">Comprar?</span>
+                        </h2>
+                        <p class="text-muted" style="margin-bottom: 2rem;">
+                            Es automático y seguro. Sigue estos 4 pasos sencillos:
+                        </p>
+
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-number">01</div>
+                                <div class="timeline-content">
+                                    <h3>Elige tu Plan</h3>
+                                    <p>Navega por nuestro catálogo y selecciona la plataforma que deseas (Netflix,
+                                        Disney+, Combos...).</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-number">02</div>
+                                <div class="timeline-content">
+                                    <h3>Realiza el Pago</h3>
+                                    <p>Aceptamos Pago Móvil, Binance y Zinli. El sistema te mostrará la tasa del día
+                                        automáticamente.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-number">03</div>
+                                <div class="timeline-content">
+                                    <h3>Sube tu Comprobante</h3>
+                                    <p>Adjunta la captura de pantalla del pago en el formulario de compra.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-number">04</div>
+                                <div class="timeline-content">
+                                    <h3>¡Recibe al Instante!</h3>
+                                    <p>Nuestro sistema verificará y te enviará los datos de acceso a tu WhatsApp
+                                        inmediatamente.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLUMNA DERECHA: Preguntas Frecuentes (Acordeón) -->
+                    <div class="accordion-column animate-on-scroll">
+                        <h3 class="faq-subtitle">Preguntas Frecuentes</h3>
+
+                        <div class="faq-item">
+                            <input type="checkbox" id="faq1">
+                            <label class="faq-label glass-card" for="faq1">
+                                ¿Cuánto tiempo tarda la entrega?
+                                <span class="faq-icon">+</span>
+                            </label>
+                            <div class="faq-answer">
+                                <p>El proceso es casi inmediato. Una vez que subes tu comprobante y nuestro sistema o un
+                                    agente lo verifica (usualmente en minutos), recibes los datos de acceso directamente
+                                    en tu WhatsApp.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <input type="checkbox" id="faq2">
+                            <label class="faq-label glass-card" for="faq2">
+                                ¿Las cuentas tienen garantía?
+                                <span class="faq-icon">+</span>
+                            </label>
+                            <div class="faq-answer">
+                                <p>¡Sí! Todas nuestras cuentas tienen garantía total durante el tiempo contratado. Si
+                                    ocurre algún problema (caída, cambio de clave), te lo solucionamos o reponemos la
+                                    cuenta.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <input type="checkbox" id="faq3">
+                            <label class="faq-label glass-card" for="faq3">
+                                ¿Son cuentas renovables?
+                                <span class="faq-icon">+</span>
+                            </label>
+                            <div class="faq-answer">
+                                <p>La mayoría de nuestras cuentas (como las Pantallas Individuales) son renovables.
+                                    Puedes mantener tu historial y listas de favoritos mes a mes pagando antes de la
+                                    fecha de corte.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <input type="checkbox" id="faq4">
+                            <label class="faq-label glass-card" for="faq4">
+                                ¿Qué hago si necesito ayuda técnica?
+                                <span class="faq-icon">+</span>
+                            </label>
+                            <div class="faq-answer">
+                                <p>Tenemos soporte dedicado vía WhatsApp. Si tienes problemas para ingresar o configurar
+                                    tu cuenta, escríbenos y te ayudaremos paso a paso.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

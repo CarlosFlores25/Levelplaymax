@@ -1,0 +1,93 @@
+{
+    "database": "levelpla_streaming",
+    "tables": {
+        "catalogo": {
+            "description": "Lista de productos/plataformas disponibles para la venta.",
+            "columns": [
+                "id (INT)",
+                "nombre (VARCHAR) - Nombre del producto (ej: Netflix)",
+                "precio_reseller (DECIMAL) - Costo para el distribuidor",
+                "tipo_entrega (VARCHAR) - 'automatica', 'manual', 'input_correo'",
+                "categoria (VARCHAR)",
+                "estado (ENUM) - 'activo', 'inactivo'"
+            ]
+        },
+        "distribuidores": {
+            "description": "Usuarios revendedores (Resellers) del sistema.",
+            "columns": [
+                "id (INT)",
+                "nombre (VARCHAR)",
+                "email (VARCHAR)",
+                "saldo (DECIMAL) - Dinero disponible para compras",
+                "telefono (VARCHAR)",
+                "activo (BOOLEAN)",
+                "descuento_personal (DECIMAL) - Porcentaje de descuento especial",
+                "created_at (DATETIME)"
+            ]
+        },
+        "cuentas": {
+            "description": "Cuentas maestras compradas a proveedores. Una cuenta puede tener múltiples perfiles.",
+            "columns": [
+                "id (INT)",
+                "plataforma (VARCHAR) - Debe coincidir con catalogo.nombre",
+                "email_cuenta (VARCHAR) - Correo de la cuenta maestra",
+                "password (VARCHAR) - Contraseña de la cuenta",
+                "password_plain (VARCHAR) - Contraseña visible (para entregas manuales)",
+                "fecha_pago_proveedor (DATE)",
+                "costo_inversion (DECIMAL)",
+                "token_micuenta (VARCHAR) - Para extracción automática si aplica"
+            ]
+        },
+        "perfiles": {
+            "description": "Los cupos/pantallas individuales que se venden. Es la unidad de stock.",
+            "columns": [
+                "id (INT)",
+                "cuenta_id (INT) - Relación con tabla cuentas",
+                "nombre_perfil (VARCHAR) - Ej: Perfil 1, Pantalla 4",
+                "pin_perfil (VARCHAR) - PIN de bloqueo si aplica",
+                "reseller_id (INT) - NULL = LIBRE (STOCK), ID = VENDIDO",
+                "cliente_id (INT) - Si se vende directo a cliente final (uso interno)",
+                "fecha_venta_reseller (DATETIME)",
+                "fecha_corte_cliente (DATE) - Cuándo vence el servicio",
+                "auto_renovacion (BOOLEAN)"
+            ]
+        },
+        "pedidos": {
+            "description": "Registro de intentos de compra, especialmente manuales o pendientes.",
+            "columns": [
+                "id (INT)",
+                "reseller_id (INT)",
+                "producto_id (INT)",
+                "nombre_producto (VARCHAR)",
+                "precio_usd (DECIMAL)",
+                "estado (ENUM) - 'pendiente', 'aprobado', 'rechazado'",
+                "perfil_id (INT) - Perfil entregado (si aplica)",
+                "cliente_email (VARCHAR) - Correo donde se activó"
+            ]
+        },
+        "historial_recargas": {
+            "description": "Reportes de pago enviados por los resellers para recargar saldo.",
+            "columns": [
+                "id (INT)",
+                "reseller_id (INT)",
+                "monto (DECIMAL)",
+                "metodo (VARCHAR) - Ej: Pago Movil, Binance",
+                "referencia (VARCHAR)",
+                "comprobante_img (VARCHAR) - Ruta de la foto",
+                "estado (ENUM) - 'pendiente', 'aprobado', 'rechazado'",
+                "nota (TEXT) - Observaciones de la IA o Admin"
+            ]
+        },
+        "movimientos_reseller": {
+            "description": "Log financiero de entradas y salidas de saldo.",
+            "columns": [
+                "id (INT)",
+                "reseller_id (INT)",
+                "tipo (ENUM) - 'compra', 'deposito', 'reembolso', 'renovacion'",
+                "monto (DECIMAL)",
+                "descripcion (VARCHAR)",
+                "fecha (DATETIME)"
+            ]
+        }
+    }
+}

@@ -1,0 +1,32 @@
+# PHP/XAMPP
+.env
+.htaccess
+error_log
+php_errors.log
+*.log
+
+# Base de Datos
+*.sql
+*.sql.gz
+
+# Uploads y Logs del proyecto
+uploads/
+logs/
+admin/uploads/
+reseller/uploads/
+automatic/log_reporte_*.html
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# IDEs
+.vscode/
+.idea/
+.cursor/
+
+# OS
+Thumbs.db
+.DS_Store
